@@ -115,9 +115,9 @@ export default function Home() {
   // ─── CONTACT TREE ────────────────────────────────────────────────────────────
   const contactEntries = [
     "contact",
-    <div key="email" className="ml-4">├── <button className="text-blue-400 hover:text-blue-300 text-base" onClick={() => window.location.href = "mailto:kellanstempin10@gmail.com"}>email</button></div>,
-    <div key="linkedin" className="ml-4">├── <button className="text-blue-400 hover:text-blue-300 text-base" onClick={() => window.open("https://www.linkedin.com/in/kellan-stempin/", "_blank")}>LinkedIn</button></div>,
-    <div key="github" className="ml-4">└── <button className="text-blue-400 hover:text-blue-300 text-base" onClick={() => window.open("https://github.com/kellan", "_blank")}>GitHub</button></div>
+    <div key="email" className="ml-4">├── <button className="text-blue-400 hover:text-blue-300 text-base" onClick={() => window.location.href = "mailto:kstemp.work@gmail.com"}>email</button></div>,
+    <div key="linkedin" className="ml-4">├── <button className="text-blue-400 hover:text-blue-300 text-base" onClick={() => window.open("https://www.linkedin.com/in/kellan-stempin-8a2424342/", "_blank")}>LinkedIn</button></div>,
+    <div key="github" className="ml-4">└── <button className="text-blue-400 hover:text-blue-300 text-base" onClick={() => window.open("https://github.com/Kellan-Stempin", "_blank")}>GitHub</button></div>
   ];
 
   return (
