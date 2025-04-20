@@ -1,20 +1,19 @@
 // page.tsx
 "use client";
-import { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
-import React from "react";
-import { Engine } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
+
+type TerminalEntry = { prompt: string; command?: string; output?: React.ReactNode[] };
 
 export default function Home() {
   const [cursorVisible, setCursorVisible] = useState(true);
   const [commandInput, setCommandInput] = useState("");
   const [currentPath, setCurrentPath] = useState("~");
-  const [terminalOutput, setTerminalOutput] = useState<{ prompt: string; command?: string; output?: (string | React.JSX.Element)[] }[]>([]);
-  const [isTyping, setIsTyping] = useState(false);
+  const [terminalOutput, setTerminalOutput] = useState<TerminalEntry[]>([]);
 
   const asciiArt = [
-    // Saturn ASCII art here
     "                                          _.oo.",
     "                   _.u[[/;:,.         .odMMMMMM'",
     "                .o888UU[[[/;:-.  .o@P^    MMM^",
@@ -33,32 +32,28 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    const cursorInterval = setInterval(() => setCursorVisible(v => !v), 500);
-    return () => clearInterval(cursorInterval);
+    const interval = setInterval(() => setCursorVisible(v => !v), 500);
+    return () => clearInterval(interval);
   }, []);
 
   const handleCommand = (
     command: string,
-    output: (string | React.JSX.Element)[],
+    output: React.ReactNode[],
     newPath: string
   ) => {
-    // typing inline, keep menu static
-    setIsTyping(true);
     setCommandInput("");
     let i = 0;
     let typed = "";
-    const interval = setInterval(() => {
+    const timer = setInterval(() => {
       typed += command[i];
       setCommandInput(typed);
       i++;
       if (i >= command.length) {
-        clearInterval(interval);
+        clearInterval(timer);
         setTimeout(() => {
-          // update output after typing
           setTerminalOutput([{ prompt: `kellan@portfolio:${newPath}`, command, output }]);
           setCurrentPath(newPath);
           setCommandInput("");
-          setIsTyping(false);
         }, 300);
       }
     }, 50);
@@ -76,10 +71,15 @@ export default function Home() {
   const particlesOptions = {
     fullScreen: { enable: false },
     background: { color: "#0d0d0d" },
-    particles: { number: { value: 60 }, color: { value: "#d1d5db" }, size: { value: 1.4 }, move: { enable: true, speed: 0.25 }, links: { enable: true, color: "#4b5563", distance: 100, opacity: 0.15 } }
+    particles: {
+      number: { value: 60 },
+      color: { value: "#d1d5db" },
+      size: { value: 1.4 },
+      move: { enable: true, speed: 0.25 },
+      links: { enable: true, color: "#4b5563", distance: 100, opacity: 0.15 }
+    }
   };
 
-  // Structured project entries
   const projectEntries = [
     "projects",
     <div key="portfolio-website" className="ml-4">├── <button className="text-blue-400 hover:text-blue-300 text-base" onClick={() =>
@@ -160,7 +160,6 @@ export default function Home() {
           </div>
           <div className="text-white text-base relative">
             <div className="flex justify-between items-center min-h-[300px]">
-              {/* static menu always visible */}
               <div className="absolute top-5 left-5">
                 <div className="text-green-400">&gt; <span className="text-white">Kellan Stempin //</span></div>
                 <div className="mt-2 text-white">Computer Science & Cybersecurity Student</div>
@@ -171,16 +170,16 @@ export default function Home() {
                   <button onClick={() => handleCommand("cd about_me && cat bio.txt", [
                     "I'm Kellan Stempin, a Computer Science and Cybersecurity student at the University of Montana.",
                     "I enjoy building sleek tools and hacking things (ethically, of course)."
-                  ], "~/about_me")} className="block text-blue-400 hover:text-blue-300">about_me <span className="text-gray-500">// who am I?</span></button>
-                  <button onClick={() => handleCommand("cd projects && ls", projectEntries, "~/projects")} className="block text-blue-400 hover:text-blue-300">projects <span className="text-gray-500">// what I’ve built</span></button>
+                  ], "~/about_me")} className="block text-blue-400 hover:text-blue-300">about_me <span className="text-gray-500">{'// who am I?'}</span></button>
+                  <button onClick={() => handleCommand("cd projects && ls", projectEntries, "~/projects")} className="block text-blue-400 hover:text-blue-300">projects <span className="text-gray-500">{'// what I’ve built'}</span></button>
                   <button onClick={() => handleCommand("cd goals && cat future.md", [
                     "I’m aiming for impactful work in cybersecurity and software engineering."
-                  ], "~/goals")} className="block text-blue-400 hover:text-blue-300">goals <span className="text-gray-500">// what I’m aiming for</span></button>
+                  ], "~/goals")} className="block text-blue-400 hover:text-blue-300">goals <span className="text-gray-500">{'// what I\'m aiming for'}</span></button>
                   <button onClick={() => handleCommand("cd contact && cat contact.md", [
-                    "Email: kellanstempin10@gmail.com",  
+                    "Email: kellanstempin10@gmail.com",
                     "LinkedIn: linkedin.com/in/kellan-stempin/"
-                  ], "~/contact")} className="block text-blue-400 hover:text-blue-300">contact_me <span className="text-gray-500">// how to reach me</span></button>
-                  <button onClick={goBack} className="block text-yellow-400 hover:text-yellow-300">back <span className="text-gray-500">// go back</span></button>
+                  ], "~/contact")} className="block text-blue-400 hover:text-blue-300">contact_me <span className="text-gray-500">{'// how to reach me'}</span></button>
+                  <button onClick={goBack} className="block text-yellow-400 hover:text-yellow-300">back <span className="text-gray-500">{'// go back'}</span></button>
                 </div>
               </div>
               <div className="hidden md:block w-1/3 p-5 text-gray-400 font-mono text-base whitespace-pre leading-none -translate-x-28">
@@ -204,7 +203,6 @@ export default function Home() {
                   </div>
                 );
               })}
-              {/* bottom prompt always at same spot */}
               <div className="mt-4 h-6 leading-6 flex items-center">
                 <span className="text-green-400">kellan@portfolio</span>:<span className="text-purple-400">{currentPath}</span><span className="text-purple-400">$</span> <span className="text-green-400">{commandInput}</span>{cursorVisible && <span className="text-green-400 ml-1">█</span>}
               </div>
