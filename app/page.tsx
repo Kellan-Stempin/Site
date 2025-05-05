@@ -82,34 +82,256 @@ export default function Home() {
   // ─── PROJECT TREE ────────────────────────────────────────────────────────────
   const projectEntries = [
     "projects",
-    <div key="portfolio-website" className="ml-4">├── <button className="text-blue-400 hover:text-blue-300 text-base" onClick={() =>
-      handleCommand(
-        "cd projects/portfolio-website && cat README.md",
-        ["Work in progress", "----------"],
-        "~/projects/portfolio-website"
-      )
-    }>portfolio-website</button></div>,
-    <div key="enhanced-godmode" className="ml-4">├── <button className="text-blue-400 hover:text-blue-300 text-base" onClick={() =>
-      handleCommand(
-        "cd projects/enhanced-godmode && cat README.md",
-        ["Work in progress", "----------"],
-        "~/projects/enhanced-godmode"
-      )
-    }>enhanced-godmode</button></div>,
-    <div key="pyslots" className="ml-4">├── <button className="text-blue-400 hover:text-blue-300 text-base" onClick={() =>
-      handleCommand(
-        "cd projects/pyslots && cat README.md",
-        ["Work in progress", "----------"],
-        "~/projects/pyslots"
-      )
-    }>pyslots</button></div>,
-    <div key="fun-practice" className="ml-4">└── <button className="text-blue-400 hover:text-blue-300 text-base" onClick={() =>
-      handleCommand(
-        "cd projects/fun-practice && cat README.md",
-        ["Work in progress", "----------"],
-        "~/projects/fun-practice"
-      )
-    }>fun-practice</button></div>
+    <div key="portfolio-website" className="ml-4">
+      ├──{" "}
+      <button
+        className="text-blue-400 hover:text-blue-300 text-base"
+        onClick={() =>
+          handleCommand(
+            "cd projects/portfolio-website && cat README.md",
+            [
+              "Personal Webpage",
+              "----------",
+              <div key="website-img" className="my-3">
+                <img
+                  src="/website.png"
+                  alt="Portfolio page Screenshot"
+                  className="max-w-full rounded-md border border-gray-700"
+                />
+              </div>,
+              <div key="website-desc" className="my-2">
+                Wanted to make a personal portfolio for myself almost
+                immediately after starting Web Design and Programming, I have
+                enjoyed working on this for the past month or so. Written using
+                Next.js with an interactive React frontend, this project has
+                been quite the challenge for me.
+              </div>,
+              <div key="website-link" className="mt-3">
+                <a
+                  href="https://github.com/Kellan-Stempin/Site"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300 underline"
+                >
+                  Project
+                </a>
+              </div>,
+              <div key="back" className="mt-3">
+                <button
+                  onClick={goBack}
+                  className="block text-yellow-400 hover:text-yellow-300"
+                >
+                  back <span className="text-gray-500">{"// go back"}</span>
+                </button>
+              </div>,
+            ],
+            "~/projects/portfolio-website"
+          )
+        }
+      >
+        portfolio-website
+      </button>
+    </div>,
+    <div key="halloween-store" className="ml-4">
+      ├──{" "}
+      <button
+        className="text-blue-400 hover:text-blue-300 text-base"
+        onClick={() =>
+          handleCommand(
+            "cd projects/halloween-store && cat README.md",
+            [
+              "Halloween Store Website",
+              "----------",
+              <div key="halloween-img" className="my-3">
+                <img
+                  src="/halloween-store.png"
+                  alt="Halloween Store Screenshot"
+                  className="max-w-full rounded-md border border-gray-700"
+                />
+              </div>,
+              <div key="halloween-desc" className="my-2">
+                This assignment was also made for my Web Design and Programming
+                class. We learned CSS in more depth for this assignment and I
+                wanted a transparent main content space with a moving black hole
+                in the background. It was challenging to figure out how to get
+                this to work, but after further research on gifs and svgs.
+              </div>,
+              <div key="halloween-link" className="mt-3">
+                <a
+                  href="http://students.cs.umt.edu/~ks235279/halloween-shop-black-hole/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300 underline"
+                >
+                  Project
+                </a>
+              </div>,
+              <div key="back" className="mt-3">
+                <button
+                  onClick={goBack}
+                  className="block text-yellow-400 hover:text-yellow-300"
+                >
+                  back <span className="text-gray-500">{"// go back"}</span>
+                </button>
+              </div>,
+            ],
+            "~/projects/halloween-store"
+          )
+        }
+      >
+        halloween-store
+      </button>
+    </div>,
+    <div key="enhanced-godmode" className="ml-4">
+      ├──{" "}
+      <button
+        className="text-blue-400 hover:text-blue-300 text-base"
+        onClick={() =>
+          handleCommand(
+            "cd projects/enhanced-godmode && cat README.md",
+            [
+              "Enhanced Godmode Mod",
+              "----------",
+              <div key="Enhanced God Mode-img" className="my-3">
+                <img
+                  src="/enhancedgodmode.png"
+                  alt="Mod Page Screenshot"
+                  className="max-w-full rounded-md border border-gray-700"
+                />
+              </div>,
+              <div key="Enhanced God Mode-desc" className="my-2">
+                Noticed the difficulty of the game R.E.P.O and decided to create
+                a mod which allows for infinite upgrades, no-clip, god mode, and
+                more. Had to learn C# and the Unity engine for this project
+                while on spring break, and had a blast with it! The mod is
+                sitting just over 35,000 downloads.
+              </div>,
+              <div key="Enhanced-link" className="mt-3">
+                <a
+                  href="https://thunderstore.io/c/repo/p/REPODEMON/EnhancedGodMode/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300 underline"
+                >
+                  Project
+                </a>
+              </div>,
+              <div key="back" className="mt-3">
+                <button
+                  onClick={goBack}
+                  className="block text-yellow-400 hover:text-yellow-300"
+                >
+                  back <span className="text-gray-500">{"// go back"}</span>
+                </button>
+              </div>,
+            ],
+            "~/projects/enhanced-godmode"
+          )
+        }
+      >
+        enhanced-godmode
+      </button>
+    </div>,
+    <div key="pyslots" className="ml-4">
+      ├──{" "}
+      <button
+        className="text-blue-400 hover:text-blue-300 text-base"
+        onClick={() =>
+          handleCommand(
+            "cd projects/pyslots && cat README.md",
+            [
+              "PySlots",
+              "----------",
+              <div key="PySlots-img" className="my-3">
+                <img
+                  src="/pyslots.png"
+                  alt="PySlots Runtime"
+                  className="max-w-full rounded-md border border-gray-700"
+                />
+              </div>,
+              <div key="Pyslots-desc" className="my-2">
+                This project was originally for my Introduction to Computer
+                Science class and is written in Python. shortly after the
+                semester ended I decided to revisit it. I added an ascii slot
+                machine, colored text based on win/loss, and the ability to
+                replay the game.
+              </div>,
+              <div key="Pyslots-link" className="mt-3">
+                <a
+                  href="https://github.com/Kellan-Stempin/PySlots"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300 underline"
+                >
+                  Project
+                </a>
+              </div>,
+              <div key="back" className="mt-3">
+                <button
+                  onClick={goBack}
+                  className="block text-yellow-400 hover:text-yellow-300"
+                >
+                  back <span className="text-gray-500">{"// go back"}</span>
+                </button>
+              </div>,
+            ],
+            "~/projects/pyslots"
+          )
+        }
+      >
+        pyslots
+      </button>
+    </div>,
+    <div key="BlackJack" className="ml-4">
+      └──{" "}
+      <button
+        className="text-blue-400 hover:text-blue-300 text-base"
+        onClick={() =>
+          handleCommand(
+            "cd projects/Blackjack && cat README.md",
+            [
+              "PySlots",
+              "----------",
+              <div key="Blackjack-img" className="my-3">
+                <img
+                  src="/blackjack.png"
+                  alt="blackjack Runtime"
+                  className="max-w-full rounded-md border border-gray-700"
+                />
+              </div>,
+              <div key="blackjack-desc" className="my-2">
+                This project was written for my Interdisciplinary Computer
+                Science class. Written in python we were instructed to create a
+                game of blackjack, I decided to use ascii art for the cards. Had
+                a lot of fun with this one as it seemed like I was finally able
+                to put everything together confidently.
+              </div>,
+              <div key="blackjack-link" className="mt-3">
+                <a
+                  href="https://github.com/Kellan-Stempin/blackjack"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300 underline"
+                >
+                  Project
+                </a>
+              </div>,
+              <div key="back" className="mt-3">
+                <button
+                  onClick={goBack}
+                  className="block text-yellow-400 hover:text-yellow-300"
+                >
+                  back <span className="text-gray-500">{"// go back"}</span>
+                </button>
+              </div>,
+            ],
+            "~/projects/Blackjack"
+          )
+        }
+      >
+        Blackjack
+      </button>
+    </div>,
   ];
 
   // ─── CONTACT TREE ────────────────────────────────────────────────────────────
@@ -180,3 +402,4 @@ export default function Home() {
     </div>
   );
 }
+
